@@ -36,9 +36,103 @@
 							Cálculo de IMC e de Peso Ideal
 						</div>
 					</div>
+
+					<div class="row text-center">
+						<div class="col-md-6">
+							<img src="img/forma.png" id="forma">
+							<br>
+							Informe seu peso (kg)
+							<br>
+							<input type="text" name="peso" id="peso" size="20" value="">
+							<br><br>
+							Informe sua Altura
+							<br>
+							<input type="text" name="altura" id="altura" size="20" value="">
+							<br><br>
+							Informe seu Sexo
+							<br>
+							<select name="sexo" id="sexo">
+								<option value="F">Feminino</option>
+								<option value="M">Masculino</option>
+							</select>
+							<br><br>
+							<input type="submit" name="btnCalcular" value="Calcular">
+
+						</div>
+
+						<div class="col-md-6">
+							<!--mostrar aqui a imagem (condição), IMC e peso ideal-->
+							
+							<?php
+								if(isset($_GET["peso"])){
+									$peso = $_GET["peso"];
+									$altura = $_GET["altura"];
+									$sexo = $_GET["sexo"];
+
+									$imc = $peso / ($altura * $altura);
+
+									if($sexo=="F"){
+										$pesoideal = 49 + (0.67 * ($altura * 100 - 152.4));
+									} else {
+										$pesoideal = 52 + (0.75 * ($altura * 100 - 152.4));
+									}
+
+
+									echo "<br>";
+
+									if($imc<17){
+										echo "<img src='img/peso1.png'>";
+									}
+
+									if($imc>=17.0 && $imc<18.5){
+										echo "<img src='img/peso2.png'>";
+									}
+
+									if($imc>=18.5 && $imc<25.0){
+										echo "<img src='img/peso3.png'>";
+									}
+
+									if($imc>=25.0 && $imc<30.0){
+										echo "<img src='img/peso4.png'>";
+									}
+
+									if($imc>=30.0 && $imc<35.0){
+										echo "<img src='img/peso5.png'>";
+									}
+
+									if($imc>=35 && $imc<40.0){
+										echo "<img src='img/peso6.png'>";
+									}
+
+									if($imc>=40){
+										echo "<img src='img/peso7.png'>";
+									}
+									
+									echo "<br><br>O seu IMC é $imc";
+									echo "<br>O seu peso ideal é $pesoideal kg";
+
+
+									/*Usar isso sempre que quiser que ao recarregar a página os componentes 
+									recebam de volta o mesmo valor que tinham. Basta alterar o ID do componente e o valor
+									a carregar que já deve estar salvo em uma variável*/
+									echo "<script>";
+									echo "$('#peso').val('$peso');";
+									echo "$('#altura').val('$altura');";
+									echo "$('#sexo').val('$sexo');";
+									echo "</script>";
+
+								}
+							?>
+						
+					</div>
+					</div>
+
+				</form>		
 			</div>
 	
 	</div>
+
+	
 </body>
 
 </html>

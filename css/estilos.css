@@ -18,3 +18,9 @@
     font-size: 1.5em;
     text-align: center;
 }
+
+#forma{
+    width: 100%;
+    margin-bottom: 30px;
+    border-bottom: 1px solid black;
+}
